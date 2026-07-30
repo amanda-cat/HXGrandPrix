@@ -263,7 +263,16 @@
   <div class="toast" id="toast"></div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+const SUPABASE_URL = 'https://xaykluthdmgzmotjmntg.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_lyYQb1IzU0P5V1C9oWMNMg_PnWjF0jf';
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 let myDriver = null;
 let assignChoice = 'HNBB';
 let tasks = [];
