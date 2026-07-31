@@ -45,11 +45,11 @@ const supabaseClient = supabase.createClient(
   .driver-picks{display:flex;flex-direction:column;gap:16px;}
   .driver-card{border:2px solid var(--line);border-radius:16px;padding:20px;text-align:left;display:flex;align-items:center;gap:16px;transition:transform .15s ease;}
   .driver-card.HNBB{border-color:var(--HNBB-dark);background:linear-gradient(120deg,rgba(0,161,232,0.16),var(--card) 55%);}
-  .driver-card.xf{border-color:var(--f1red);background:linear-gradient(120deg,rgba(255,30,0,0.16),var(--card) 55%);}
+  .driver-card.xf{border-color:var(--pink-soft);background:linear-gradient(120deg,rgba(255,30,0,0.16),var(--card) 55%);}
   .driver-main{flex:1;display:flex;align-items:center;gap:16px;cursor:pointer;}
   .car-badge{width:60px;height:60px;border-radius:50%;flex-shrink:0;border:2px solid;overflow:hidden;position:relative;}
   .car-badge.HNBB{border-color:var(--HNBB);}
-  .car-badge.xf{border-color:var(--f1red);}
+  .car-badge.xf{border-color:var(--pink-soft);}
   .driver-card h2{font-size:22px;}
   .driver-card.HNBB h2{color:var(--HNBB);}
   .driver-card.xf h2{color:var(--pink-soft);}
@@ -73,12 +73,12 @@ const supabaseClient = supabase.createClient(
   .finish{position:absolute;right:6px;top:0;bottom:0;width:10px;background-image:repeating-linear-gradient(0deg,var(--cream) 0 6px,#111 6px 12px);opacity:.8;}
   .lap-icon{position:absolute;right:-4px;top:-6px;font-size:18px;}
   .halfway-line{position:absolute;left:50%;top:0;bottom:0;width:0;border-left:2px dashed rgba(255,30,0,0.5);transform:translateX(-50%);}
-  .halfway-label{position:absolute;left:50%;bottom:3px;transform:translateX(-50%);font-family:'Barlow Condensed';font-weight:700;font-size:10px;color:var(--pink-soft);white-space:nowrap;background:rgba(21,18,26,0.7);padding:1px 6px;border-radius:8px;}
+  .halfway-label{position:absolute;left:50%;bottom:3px;transform:translateX(-50%);font-family:'Barlow Condensed';font-weight:700;font-size:10px;color:var(--f1red);white-space:nowrap;background:rgba(21,18,26,0.7);padding:1px 6px;border-radius:8px;}
   .car-marker{position:absolute;top:8px;transition:left .6s cubic-bezier(.22,1,.36,1);}
   .car-marker.xf{top:44px;}
-  .car-marker img.car-photo{width:30px;height:30px;border:2px solid var(--asphalt);}
+  .car-marker img.car-photo{width:30px;height:30px;border:2px solid var(--gold);}
   .car-marker.HNBB img{box-shadow:0 0 0 2px var(--HNBB);}
-  .car-marker.xf img{box-shadow:0 0 0 2px var(--f1red);}
+  .car-marker.xf img{box-shadow:0 0 0 2px var(--soft-pink);}
   .car-marker span.label{position:absolute;top:-15px;left:50%;transform:translateX(-50%);font-family:'Barlow Condensed';font-weight:700;font-size:11px;color:var(--muted);white-space:nowrap;}
   .lap-badge{position:absolute;bottom:-8px;right:-4px;font-family:'Barlow Condensed';font-weight:700;font-size:9px;background:var(--gold);color:#3A2A00;border-radius:8px;padding:1px 4px;}
 
@@ -96,19 +96,19 @@ const supabaseClient = supabase.createClient(
   .lap-progress{height:5px;border-radius:4px;background:var(--line);margin-top:8px;overflow:hidden;}
   .lap-progress i{display:block;height:100%;border-radius:4px;}
   .stand-card.HNBB .lap-progress i{background:var(--HNBB);}
-  .stand-card.xf .lap-progress i{background:var(--f1red);}
+  .stand-card.xf .lap-progress i{background:var(--pink-soft);}
   .lap-progress-label{font-family:'Barlow Condensed';font-size:10.5px;color:var(--muted);margin-top:4px;}
   .trophy{position:absolute;top:12px;right:12px;font-size:18px;}
 
   .section-head{display:flex;align-items:center;justify-content:space-between;padding:0 20px;margin:22px 0 10px;}
   .section-head .eyebrow{margin:0;}
-  .count-pill{font-family:'Barlow Condensed';font-weight:700;font-size:12px;background:rgba(255,30,0,0.16);color:var(--pink-soft);padding:2px 9px;border-radius:10px;}
+  .count-pill{font-family:'Barlow Condensed';font-weight:700;font-size:12px;background:rgba(255,30,0,0.16);color:var(--f1red);padding:2px 9px;border-radius:10px;}
 
   .task-list{padding:0 20px;display:flex;flex-direction:column;gap:10px;}
   .task-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;align-items:flex-start;gap:12px;}
   .task-card .stripe{width:4px;align-self:stretch;border-radius:4px;flex-shrink:0;}
   .task-card .stripe.HNBB{background:var(--HNBB);}
-  .task-card .stripe.xf{background:var(--f1red);}
+  .task-card .stripe.xf{background:var(--pink-soft);}
   .task-card .stripe.either{background:linear-gradient(180deg,var(--HNBB),var(--f1red));}
   .task-body{flex:1;min-width:0;}
   .task-title{font-size:15px;font-weight:600;color:var(--cream);word-break:break-word;}
@@ -221,6 +221,19 @@ const supabaseClient = supabase.createClient(
       </div>
     </div>
 
+
+    <div class="section-head">
+      <p class="eyebrow">The Grid Board</p>
+      <span class="count-pill" id="open-count">0</span>
+    </div>
+    <div class="task-list" id="open-list"></div>
+
+    <div class="section-head">
+      <p class="eyebrow">Checkpoints · Recently Cleared</p>
+      <span class="count-pill" id="done-count">0</span>
+    </div>
+    <div class="lap-log" id="lap-log"></div>
+
     <div class="standings">
       <div class="stand-card HNBB" id="stand-HNBB">
         <div class="pos" id="pos-HNBB">P1</div>
@@ -241,23 +254,10 @@ const supabaseClient = supabase.createClient(
         <div class="lap-progress-label" id="prog-label-xf">0/5 pts to next lap</div>
       </div>
     </div>
-
-    <div class="section-head">
-      <p class="eyebrow">The Grid Board</p>
-      <span class="count-pill" id="open-count">0</span>
-    </div>
-    <div class="task-list" id="open-list"></div>
-
-    <div class="section-head">
-      <p class="eyebrow">Checkpoints · Recently Cleared</p>
-      <span class="count-pill" id="done-count">0</span>
-    </div>
-    <div class="lap-log" id="lap-log"></div>
-
     <p class="switch-link" onclick="showSelect()">Switch driver</p>
   </div>
 
-  <button class="fab" onclick="openModal()">🏁 Send to the grid</button>
+  <button class="fab" onclick="openModal()">🏁 Add to the grid</button>
 
   <div class="modal-overlay" id="modal-overlay">
     <div class="modal">
