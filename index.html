@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +37,7 @@ const supabaseClient = supabase.createClient(
   .checker-strip{height:8px;background-image:repeating-linear-gradient(90deg,var(--cream) 0 10px,var(--grey) 10px 20px);}
   .red-strip{height:4px;background:linear-gradient(90deg,var(--f1red),var(--HNBB));}
   h1,h2,h3{font-family:'Racing Sans One',cursive;letter-spacing:0.5px;margin:0;}
-  .eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:2px;font-size:12px;color:var(--f1red);}
+  .eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:2px;font-size:12px;color:var(--gold);}
   .car-photo{border-radius:50%;object-fit:cover;display:block;}
 
   #screen-select{padding:32px 20px 40px;text-align:center;}
@@ -50,6 +51,8 @@ const supabaseClient = supabase.createClient(
   .car-badge{width:60px;height:60px;border-radius:50%;flex-shrink:0;border:2px solid;overflow:hidden;position:relative;}
   .car-badge.HNBB{border-color:var(--HNBB);}
   .car-badge.xf{border-color:var(--pink-soft);}
+  .car-badge.HNBB img.car-photo{border:2px solid var(--HNBB);}
+  .car-badge.xf img.car-photo{border:2px solid var(--pink-soft);}
   .driver-card h2{font-size:22px;}
   .driver-card.HNBB h2{color:var(--HNBB);}
   .driver-card.xf h2{color:var(--pink-soft);}
@@ -59,10 +62,10 @@ const supabaseClient = supabase.createClient(
 
   #screen-dashboard{display:none;padding-bottom:110px;}
   .topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 4px;}
-  .topbar h1{font-size:18px;}
+  .topbar h1{font-size:18px;color:var(--f1red);}
   .me-badge{font-family:'Barlow Condensed';font-weight:600;font-size:13px;padding:6px 12px;border-radius:20px;cursor:pointer;display:flex;align-items:center;gap:6px;}
-  .me-badge.HNBB{background:rgba(0,161,232,0.2);color:var(--HNBB);}
-  .me-badge.xf{background:rgba(255,30,0,0.18);color:var(--pink-soft);}
+  .me-badge.hnbb{background:rgba(0,161,232,0.2);color:var(--HNBB);border:1px solid var(--HNBB);}
+  .me-badge.xf{background:rgba(255,61,129,0.18);color:var(--pink-soft);border:1px solid var(--pink-soft);}
   .month-label{padding:0 20px;margin:2px 0 12px;font-family:'Barlow Condensed';font-size:13px;color:var(--muted);}
 
   .track-wrap{margin:8px 20px 18px;background:var(--card);border-radius:16px;padding:16px;border:1px solid var(--line);}
@@ -72,13 +75,13 @@ const supabaseClient = supabase.createClient(
   .start-zone{position:absolute;left:0;top:0;bottom:0;width:10px;background-image:repeating-linear-gradient(0deg,var(--cream) 0 6px,#111 6px 12px);opacity:.8;}
   .finish{position:absolute;right:6px;top:0;bottom:0;width:10px;background-image:repeating-linear-gradient(0deg,var(--cream) 0 6px,#111 6px 12px);opacity:.8;}
   .lap-icon{position:absolute;right:-4px;top:-6px;font-size:18px;}
-  .halfway-line{position:absolute;left:50%;top:0;bottom:0;width:0;border-left:2px dashed rgba(255,30,0,0.5);transform:translateX(-50%);}
+  .halfway-line{position:absolute;left:50%;top:0;bottom:0;width:0;border-left:2px dashed rgba(255,195,0,0.5);transform:translateX(-50%);}
   .halfway-label{position:absolute;left:50%;bottom:3px;transform:translateX(-50%);font-family:'Barlow Condensed';font-weight:700;font-size:10px;color:var(--f1red);white-space:nowrap;background:rgba(21,18,26,0.7);padding:1px 6px;border-radius:8px;}
   .car-marker{position:absolute;top:8px;transition:left .6s cubic-bezier(.22,1,.36,1);}
   .car-marker.xf{top:44px;}
-  .car-marker img.car-photo{width:30px;height:30px;border:2px solid var(--f1red);}
-  .car-marker.HNBB img{box-shadow:0 0 0 2px var(--HNBB);}
-  .car-marker.xf img{box-shadow:0 0 0 2px var(--soft-pink);}
+  .car-marker img.car-photo{width:30px;height:30px;}
+  .car-marker.HNBB img.car-photo{border:2px solid var(--HNBB);}
+  .car-marker.xf img.car-photo{border:2px solid var(--pink-soft);}
   .car-marker span.label{position:absolute;top:-15px;left:50%;transform:translateX(-50%);font-family:'Barlow Condensed';font-weight:700;font-size:11px;color:var(--muted);white-space:nowrap;}
   .lap-badge{position:absolute;bottom:-8px;right:-4px;font-family:'Barlow Condensed';font-weight:700;font-size:9px;background:var(--gold);color:#3A2A00;border-radius:8px;padding:1px 4px;}
 
@@ -102,7 +105,7 @@ const supabaseClient = supabase.createClient(
 
   .section-head{display:flex;align-items:center;justify-content:space-between;padding:0 20px;margin:22px 0 10px;}
   .section-head .eyebrow{margin:0;}
-  .count-pill{font-family:'Barlow Condensed';font-weight:700;font-size:12px;background:rgba(255,30,0,0.16);color:var(--f1red);padding:2px 9px;border-radius:10px;}
+  .count-pill{font-family:'Barlow Condensed';font-weight:700;font-size:12px;background:rgba(255,195,0,0.16);color:var(--gold);padding:2px 9px;border-radius:10px;}
 
   .task-list{padding:0 20px;display:flex;flex-direction:column;gap:10px;}
   .task-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;align-items:flex-start;gap:12px;}
@@ -130,7 +133,7 @@ const supabaseClient = supabase.createClient(
   .lap-item .txt b{color:var(--cream);}
   .lap-item .del-btn{padding:5px 9px;font-size:10.5px;width:auto;}
 
-  .fab{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);max-width:440px;width:calc(100% - 40px);background:linear-gradient(90deg,var(--f1red),var(--pink-soft));color:#fff;border:none;border-radius:30px;padding:15px 0;font-family:'Barlow Condensed';font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;box-shadow:0 6px 20px rgba(255,30,0,0.4);display:flex;align-items:center;justify-content:center;gap:8px;}
+  .fab{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);max-width:440px;width:calc(100% - 40px);background:linear-gradient(90deg,var(--f1red),var(--HNBB));color:#fff;border:none;border-radius:30px;padding:15px 0;font-family:'Barlow Condensed';font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;box-shadow:0 6px 20px rgba(255,30,0,0.4);display:flex;align-items:center;justify-content:center;gap:8px;}
   .fab:active{transform:translateX(-50%) scale(0.97);}
 
   .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:50;align-items:flex-end;justify-content:center;}
@@ -140,11 +143,11 @@ const supabaseClient = supabase.createClient(
   .field{margin-bottom:14px;}
   .field label{font-family:'Barlow Condensed';font-weight:600;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:6px;}
   .field input[type=text]{width:100%;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;color:var(--cream);font-family:'Inter';font-size:15px;}
-  .field input[type=text]:focus{outline:none;border-color:var(--f1red);}
+  .field input[type=text]:focus{outline:none;border-color:var(--gold);}
   .pick-row{display:flex;gap:8px;}
   .pick-opt{flex:1;text-align:center;padding:12px 6px;border-radius:10px;border:1px solid var(--line);font-family:'Barlow Condensed';font-weight:700;font-size:13px;cursor:pointer;color:var(--muted);background:var(--card);}
   .pick-opt.active.HNBB{background:rgba(0,161,232,0.2);border-color:var(--HNBB);color:var(--HNBB);}
-  .pick-opt.active.xf{background:rgba(255,30,0,0.18);border-color:var(--f1red);color:var(--pink-soft);}
+  .pick-opt.active.xf{background:rgba(255,61,129,0.18);border-color:var(--pink-soft);color:var(--pink-soft);}
   .pick-opt.active.either{background:linear-gradient(90deg,rgba(0,161,232,.18),rgba(255,30,0,.18));border-color:var(--gold);color:var(--gold);}
   .modal-actions{display:flex;gap:10px;margin-top:18px;}
   .btn-secondary{flex:1;padding:13px 0;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--muted);font-family:'Barlow Condensed';font-weight:700;font-size:14px;cursor:pointer;}
@@ -430,7 +433,7 @@ async function submitTask(){
     const { error } = await supabaseClient.from('checkpoints').insert([{
       id: id, title: title, assigned_to: assignChoice, created_by: myDriver, status: 'open'
     }]);
-    if(error){ showToast("Couldn't save — check connection"); return; }
+    if(error){ showToast("Couldn't save — check connection"); console.error('Insert error:', error); return; }
     showToast('Added to the grid 🏁');
   }
   closeModal();
