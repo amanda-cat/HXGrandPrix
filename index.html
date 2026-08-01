@@ -41,7 +41,7 @@ const supabaseClient = supabase.createClient(
   .car-photo{border-radius:50%;object-fit:cover;display:block;}
 
   #screen-select{padding:32px 20px 40px;text-align:center;}
-  #screen-select h1{font-size:40px;margin-bottom:4px;background:linear-gradient(90deg,var(--HNBB),var(--f1red));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  #screen-select h1{font-size:40px;color:var(--f1red));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
   #screen-select p.sub{font-family:'Barlow Condensed';font-size:16px;color:var(--muted);margin:6px 0 28px;}
   .driver-picks{display:flex;flex-direction:column;gap:16px;}
   .driver-card{border:2px solid var(--line);border-radius:16px;padding:20px;text-align:left;display:flex;align-items:center;gap:16px;transition:transform .15s ease;}
@@ -62,7 +62,7 @@ const supabaseClient = supabase.createClient(
 
   #screen-dashboard{display:none;padding-bottom:110px;}
   .topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 4px;}
-  .topbar h1{font-size:25px;color:var(--muted);}
+  .topbar h1{font-size:30px;color:var(--f1red);}
   .me-badge{font-family:'Barlow Condensed';font-weight:600;font-size:13px;padding:6px 12px;border-radius:20px;cursor:pointer;display:flex;align-items:center;gap:6px;}
   .me-badge.hnbb{background:rgba(0,161,232,0.2);color:var(--HNBB);border:1px solid var(--HNBB);}
   .me-badge.xf{background:rgba(255,61,129,0.18);color:var(--pink-soft);border:1px solid var(--pink-soft);}
@@ -167,7 +167,7 @@ const supabaseClient = supabase.createClient(
     <div class="checker-strip" style="margin:-32px -20px 0;"></div>
     <div class="red-strip" style="margin:0 -20px 24px;"></div>
     <p class="eyebrow">Race control &middot; Driver select</p>
-    <h1>HNBB vs XF Grand Prix</h1>
+    <h1>H vs X Grand Prix</h1>
     <p class="sub">1 checkpoint cleared = 1 point. 5 points = 1 lap. Standings reset each month, but every lap ever run stays in the history 🏆</p>
     <div class="driver-picks">
       <div class="driver-card HNBB">
