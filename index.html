@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> HNBB vs XF Grand Prix</title>
+<title>HNBB vs XF Grand Prix</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -41,7 +41,7 @@ const supabaseClient = supabase.createClient(
   .car-photo{border-radius:50%;object-fit:cover;display:block;}
 
   #screen-select{padding:32px 20px 40px;text-align:center;}
-  #screen-select h1{font-size:40px;color:var(--gold);}
+  #screen-select h1{font-size:26px;margin-bottom:4px;background:linear-gradient(90deg,var(--f1red),var(--HNBB));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
   #screen-select p.sub{font-family:'Barlow Condensed';font-size:16px;color:var(--muted);margin:6px 0 28px;}
   .driver-picks{display:flex;flex-direction:column;gap:16px;}
   .driver-card{border:2px solid var(--line);border-radius:16px;padding:20px;text-align:left;display:flex;align-items:center;gap:16px;transition:transform .15s ease;}
@@ -62,7 +62,7 @@ const supabaseClient = supabase.createClient(
 
   #screen-dashboard{display:none;padding-bottom:110px;}
   .topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 4px;}
-  .topbar h1{font-size:30px;color:var(--gold);text-align:center;}
+  .topbar h1{font-size:18px;color:var(--f1red);}
   .me-badge{font-family:'Barlow Condensed';font-weight:600;font-size:13px;padding:6px 12px;border-radius:20px;cursor:pointer;display:flex;align-items:center;gap:6px;}
   .me-badge.hnbb{background:rgba(0,161,232,0.2);color:var(--HNBB);border:1px solid var(--HNBB);}
   .me-badge.xf{background:rgba(255,61,129,0.18);color:var(--pink-soft);border:1px solid var(--pink-soft);}
@@ -167,7 +167,7 @@ const supabaseClient = supabase.createClient(
     <div class="checker-strip" style="margin:-32px -20px 0;"></div>
     <div class="red-strip" style="margin:0 -20px 24px;"></div>
     <p class="eyebrow">Race control &middot; Driver select</p>
-    <h1>H vs X Grand Prix</h1>
+    <h1>HNBB vs XF Grand Prix</h1>
     <p class="sub">1 checkpoint cleared = 1 point. 5 points = 1 lap. Standings reset each month, but every lap ever run stays in the history 🏆</p>
     <div class="driver-picks">
       <div class="driver-card HNBB">
@@ -198,7 +198,7 @@ const supabaseClient = supabase.createClient(
     <div class="checker-strip"></div>
     <div class="red-strip"></div>
     <div class="topbar">
-      <h1>🏁 HNBB vs XF 🏁 </h1>
+      <h1>🏁 HNBB vs XF Grand Prix</h1>
       <div class="me-badge" id="me-badge" onclick="showSelect()">Driving as ...</div>
     </div>
     <p class="month-label" id="month-label"></p>
@@ -426,14 +426,13 @@ async function submitTask(){
       .from('checkpoints')
       .update({ title: title, assigned_to: assignChoice })
       .eq('id', editingId);
-    if(error){ showToast("Couldn't save that edit"); return; }
+    if(error){ showToast("Couldn't save: " + (error.message || 'unknown error')); return; }
     showToast('Checkpoint updated');
   }else{
-    const id = 't' + Date.now() + Math.random().toString(36).slice(2,6);
     const { error } = await supabaseClient.from('checkpoints').insert([{
-      id: id, title: title, assigned_to: assignChoice, created_by: myDriver, status: 'open'
+      title: title, assigned_to: assignChoice, created_by: myDriver, status: 'open'
     }]);
-    if(error){ showToast("Couldn't save — check connection"); console.error('Insert error:', error); return; }
+    if(error){ showToast("Couldn't save: " + (error.message || 'unknown error')); return; }
     showToast('Added to the grid 🏁');
   }
   closeModal();
@@ -446,7 +445,7 @@ async function completeTask(id){
     .from('checkpoints')
     .update({ status: 'done', completed_by: myDriver, completed_at: new Date().toISOString() })
     .eq('id', id);
-  if(error){ showToast("Couldn't save — check connection"); return; }
+  if(error){ showToast("Couldn't save: " + (error.message || 'unknown error')); return; }
   await loadTasks();
   render();
   showToast((myDriver === 'HNBB' ? 'HNBB' : 'XF') + ' completed it! +1 point 🏆');
@@ -455,7 +454,7 @@ async function completeTask(id){
 async function deleteTask(id){
   if(!confirm('Remove this checkpoint for good?')) return;
   const { error } = await supabaseClient.from('checkpoints').delete().eq('id', id);
-  if(error){ showToast("Couldn't delete — check connection"); return; }
+  if(error){ showToast("Couldn't delete: " + (error.message || 'unknown error')); return; }
   await loadTasks();
   render();
   showToast('Removed');
