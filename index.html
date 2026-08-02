@@ -133,8 +133,8 @@ const supabaseClient = supabase.createClient(
   .lap-item .txt b{color:var(--cream);}
   .lap-item .del-btn{padding:5px 9px;font-size:10.5px;width:auto;}
 
-  .fab{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);max-width:440px;width:calc(100% - 40px);background:linear-gradient(90deg,var(--f1red),var(--HNBB));color:#fff;border:none;border-radius:30px;padding:15px 0;font-family:'Barlow Condensed';font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;box-shadow:0 6px 20px rgba(255,30,0,0.4);display:flex;align-items:center;justify-content:center;gap:8px;}
-  .fab:active{transform:translateX(-50%) scale(0.97);}
+  .add-btn{width:70%;margin:0 20px 14px;max-width:calc(70% - 40px);background:linear-gradient(90deg,var(--HNBB),var(--pink-soft));color:#fff;border:none;border-radius:24px;padding:10px 0;font-family:'Barlow Condensed';font-weight:700;font-size:13px;letter-spacing:0.8px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 4px 14px rgba(0,161,232,0.25);}
+  .add-btn:active{transform:scale(0.97);}
 
   .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:50;align-items:flex-end;justify-content:center;}
   .modal-overlay.open{display:flex;}
@@ -229,6 +229,7 @@ const supabaseClient = supabase.createClient(
       <p class="eyebrow">The Grid Board</p>
       <span class="count-pill" id="open-count">0</span>
     </div>
+    <button class="add-btn" onclick="openModal()">🏁 Add to the grid</button>
     <div class="task-list" id="open-list"></div>
 
     <div class="section-head">
@@ -259,8 +260,6 @@ const supabaseClient = supabase.createClient(
     </div>
     <p class="switch-link" onclick="showSelect()">Switch driver</p>
   </div>
-
-  <button class="fab" onclick="openModal()">🏁 Add to the grid</button>
 
   <div class="modal-overlay" id="modal-overlay">
     <div class="modal">
@@ -367,7 +366,6 @@ function showToast(msg){
 function showSelect(){
   document.getElementById('screen-select').style.display = 'block';
   document.getElementById('screen-dashboard').style.display = 'none';
-  document.querySelector('.fab').style.display = 'none';
 }
 
 function pickDriver(d){
@@ -379,7 +377,6 @@ function pickDriver(d){
 function showDashboard(){
   document.getElementById('screen-select').style.display = 'none';
   document.getElementById('screen-dashboard').style.display = 'block';
-  document.querySelector('.fab').style.display = 'flex';
   const badge = document.getElementById('me-badge');
   badge.textContent = 'Driving as ' + (myDriver === 'HNBB' ? 'HNBB' : 'XF');
   badge.className = 'me-badge ' + myDriver.toLowerCase();
