@@ -185,7 +185,7 @@ const supabaseClient = supabase.createClient(
   .cal-legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
   .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
   .cal-dow{text-align:center;font-family:'Barlow Condensed';font-weight:700;font-size:11px;color:var(--muted);padding-bottom:4px;text-transform:uppercase;}
-.cal-header{display:flex;align-items:center;justify-content:space-between;padding:0 20px;margin-bottom:10px;}
+  .cal-header{display:flex;align-items:center;justify-content:space-between;padding:0 20px;margin-bottom:10px;}
   .cal-nav-btn{background:var(--card);border:1px solid var(--line);color:var(--cream);width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:16px;flex-shrink:0;}
   .cal-wrap{margin:0 20px 16px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 8px;}
   .cal-legend{display:flex;flex-wrap:wrap;gap:8px 10px;margin:0 20px 14px;font-family:'Barlow Condensed';font-size:10.5px;color:var(--muted);}
@@ -834,7 +834,7 @@ async function submitTask(){
       .eq('id', editingId);
     if(error){ showToast("Couldn't save: " + (error.message || 'unknown error')); return; }
     showToast('Checkpoint updated');
-  }else{
+  } else {
     const id = 't' + Date.now() + Math.random().toString(36).slice(2,8);
     const { error } = await supabaseClient.from('checkpoints').insert([{
       id: id, title: title, assigned_to: assignChoice, created_by: myDriver, status: 'open'
@@ -1378,14 +1378,13 @@ function renderCalendar(){
   const year=currentCalMonth.getFullYear(), month=currentCalMonth.getMonth();
   document.getElementById('cal-month-label').textContent = currentCalMonth.toLocaleString('en-US',{month:'long',year:'numeric'});
   const firstDay = new Date(year,month,1);
-  const startWeekday = firstDay.getDay();
   const daysInMonth = new Date(year,month+1,0).getDate();
   const periodDaysSet = new Set(entries.filter(e=>e.type==='period').map(e=>e.visit_date));
   const intimacyDaysSet = new Set(entries.filter(e=>e.type==='intimacy').map(e=>e.visit_date));
   const predicted = predictedPeriodRanges(stats,3);
   const todayKey = ymdLocal(new Date());
 
-const jsDow = firstDay.getDay();
+  const jsDow = firstDay.getDay();
   const startWeekday = (jsDow + 6) % 7;
   let html = ['M','T','W','T','F','S','S'].map(d=>`<div class="cal-dow">${d}</div>`).join('');
   for(let i=0;i<startWeekday;i++) html+='<div class="cal-cell empty"></div>';
